@@ -14,8 +14,4 @@ export class AccountService {
   getUserAccount(userId: number) {
     return this.repo.findByUser(userId);
   }
-
-  getAccountByUserId(userId: number) {
-    return this.repo.findAccountByUserId(userId);
-  }
 }

@@ -28,17 +28,6 @@ export class AccountRepository {
     });
   }
 
-  async findAccountByUserId(userId: number) {
-    const account = await this.prisma.account.findMany({
-      where: { userId },
-    });
-
-    if (!account) {
-      throw new Error('Account not found');
-    }
-    return account;
-  }
-
   findByUser(userId: number) {
     return this.prisma.account.findMany({
       where: { userId },
