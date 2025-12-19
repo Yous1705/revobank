@@ -8,7 +8,7 @@ RUN npm install -g pnpm@10.12.3
 
 COPY package*.json ./
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 COPY . .
 
