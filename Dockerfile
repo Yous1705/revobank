@@ -1,5 +1,4 @@
 # builder stage
-
 FROM node:22-alpine AS builder
 
 WORKDIR /app
@@ -7,18 +6,13 @@ WORKDIR /app
 RUN npm install -g pnpm@10.12.3
 
 COPY package*.json ./
-
 RUN pnpm install
 
 COPY . .
-
-RUN pnpm prisma generate
-
 RUN pnpm run build
 
 
-# Runtime Stage
-
+# runtime stage
 FROM node:22-alpine
 
 WORKDIR /app
@@ -26,11 +20,9 @@ WORKDIR /app
 RUN npm install -g pnpm@10.12.3
 
 COPY --from=builder /app/node_modules ./node_modules
-
 COPY --from=builder /app/dist ./dist
-
 COPY /app/package*.json ./package*.json
 
 EXPOSE 3000
 
-CMD ["node", "dist/src/main.js"]
+CMD sh -c "pnpm prisma generate && node dist/src/main.js"
