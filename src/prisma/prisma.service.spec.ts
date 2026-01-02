@@ -15,4 +15,8 @@ describe('PrismaService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should expose $connect', () => {
+    expect(typeof (service as any).$connect).toBe('function');
+  });
 });

@@ -17,4 +17,8 @@ describe('PrismaController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should have prismaService injected', () => {
+    expect((controller as any).prismaService).toBeDefined();
+  });
 });
